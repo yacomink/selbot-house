@@ -1,0 +1,17 @@
+Flask==0.10.1
+Jinja2==2.7.3
+MarkupSafe==0.23
+Pillow==2.1.0
+Wand==0.3.7
+Werkzeug==0.9.6
+ansible==1.5.4
+apiclient==1.0.2
+itsdangerous==0.24
+pymongo==2.7.1
+stevedore==0.15
+urllib3==1.9
+vboxapi==1.0
+virtualenv==1.11.4
+virtualenv-clone==0.2.5
+virtualenvwrapper==4.2
+wsgiref==0.1.2
