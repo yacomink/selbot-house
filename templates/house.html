@@ -31,16 +31,13 @@
 			<h2>
 				{{ server.server }}
 				<span class="label label-default">{{ server.branch }}</span>
-			</h2>
-			<p>
 				{% if server.minutes_ago > 15 %}
 				<span class="label label-danger">Probably free!</span>
 				{% else %}
 				<span class="label label-success">In use.</span>
 				{% endif %}
-			</p>
-
-			<p>Started running <code>{{ server.running }}</code> {{ server.minutes_ago }} minutes ago.</p>
+			</h2>
+			<p>Running <code>{{ server.running }}</code> as of {{ server.minutes_ago }} minutes ago.</p>
 		</div>
 		{% endfor %}
 	</div>
