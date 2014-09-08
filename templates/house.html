@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sel Machines</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+	
+	<link href="//d2c5utp5fpfikz.cloudfront.net/3_1_1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//d2c5utp5fpfikz.cloudfront.net/3_1_1/css/style.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+
+  <link rel="shortcut icon" href="//d2c5utp5fpfikz.cloudfront.net/3_1_1/img/favicon.png">
+  
+	<script type="text/javascript" src="//d2c5utp5fpfikz.cloudfront.net/3_1_1/js/jquery.min.js"></script>
+	<script type="text/javascript" src="//d2c5utp5fpfikz.cloudfront.net/3_1_1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="//d2c5utp5fpfikz.cloudfront.net/3_1_1/js/scripts.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<div class="row clearfix">
+		{% for server in servers %}
+		<div class="col-md-4 column">
+			<h2>
+				{{ server.server }}
+
+				{% if server.minutes_ago > 15 %}
+				<span class="label label-danger">Probably free!</span>
+				{% else %}
+				<span class="label label-success">In use.</span>
+				{% endif %}
+			</h2>
+			<br>
+			<p>Started running <code>{{ server.running }}</code> {{ server.minutes_ago }} minutes ago.</p>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+</body>
+</html>
