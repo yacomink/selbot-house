@@ -31,9 +31,9 @@
 			<h2>
 				{{ server.server }}
 				{% if server.minutes_ago > 15 %}
-				<span class="label label-danger">Probably free!</span>
+				<span class="label label-success">Probably free!</span>
 				{% else %}
-				<span class="label label-success">In use.</span>
+				<span class="label label-danger">In use.</span>
 				{% endif %}
 			</h2>
 			<h6><code>{{ server.branch }}</code></h6>	
