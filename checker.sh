@@ -6,5 +6,5 @@ HOSTNAME=$(hostname)
 
 if [ $RUNNING ]
 then
-	curl -s http://selbot-house.herokuapp.com/$HOSTNAME?running=$RUNNING\&branch=$BRANCH >> /dev/null
+	curl -s http://selbot-house.herokuapp.com/heartbeat/$HOSTNAME?running=$RUNNING\&branch=$BRANCH >> /dev/null
 fi
