@@ -16,7 +16,7 @@ redis = redis.from_url(redis_url)
 @app.route("/")
 def hello():
 	selbots = [];
-	for key in redis.keys():
+	for key in sorted(redis.keys()):
 		if ('host:Dev' in key and redis.get(key)):
 			s = json.loads(redis.get(key))
 			s['server'] = key
