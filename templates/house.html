@@ -7,9 +7,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-	
-	<link href="//d2c5utp5fpfikz.cloudfront.net/3_1_1/css/bootstrap.min.css" rel="stylesheet">
-	<link href="//d2c5utp5fpfikz.cloudfront.net/3_1_1/css/style.css" rel="stylesheet">
+  <link href="//d2c5utp5fpfikz.cloudfront.net/3_1_1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//d2c5utp5fpfikz.cloudfront.net/3_1_1/css/style.css" rel="stylesheet">
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -17,10 +16,10 @@
   <![endif]-->
 
   <link rel="shortcut icon" href="//d2c5utp5fpfikz.cloudfront.net/3_1_1/img/favicon.png">
-  
-	<script type="text/javascript" src="//d2c5utp5fpfikz.cloudfront.net/3_1_1/js/jquery.min.js"></script>
-	<script type="text/javascript" src="//d2c5utp5fpfikz.cloudfront.net/3_1_1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="//d2c5utp5fpfikz.cloudfront.net/3_1_1/js/scripts.js"></script>
+
+  <script type="text/javascript" src="//d2c5utp5fpfikz.cloudfront.net/3_1_1/js/jquery.min.js"></script>
+  <script type="text/javascript" src="//d2c5utp5fpfikz.cloudfront.net/3_1_1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="//d2c5utp5fpfikz.cloudfront.net/3_1_1/js/scripts.js"></script>
 </head>
 
 <body>
@@ -28,16 +27,19 @@
 	<div class="row clearfix">
 		{% for server in servers %}
 		<div class="col-md-4 column">
-			<h2>
-				{{ server.server }}
+			<h2>{{ server.server }}</h2>
+			<h3>
 				{% if server.minutes_ago > 15 %}
 				<span class="label label-success">Probably free!</span>
 				{% else %}
 				<span class="label label-danger">In use.</span>
 				{% endif %}
-			</h2>
-			<h6><code>{{ server.branch }}</code></h6>	
-			<p>Running <code>{{ server.running }}</code> as of {{ server.minutes_ago }} minutes ago.</p>
+			</h3>
+			<h4>Branch</h4>
+			<p><code>{{ server.branch }}</code></p>
+			<h4>Tests</h4>
+			<p>Last seen running {{ server.time_ago_relative }} ago:</p>
+			<p><code>{{ server.running }}</code></p>
 		</div>
 		{% endfor %}
 	</div>
