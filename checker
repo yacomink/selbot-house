@@ -1,0 +1,29 @@
+#!/usr/bin/env perl
+
+use v5.10;
+
+use strict;
+use warnings;
+
+use URI;
+use LWP::Simple;
+
+my $REPO_DIR = '/buzzfeed/webapp';
+
+my $RUNNING = `ps -a -o args| grep selenium2 | grep -v grep | head -1`;
+chomp $RUNNING;
+my $BRANCH = `cd $REPO_DIR && git symbolic-ref --short HEAD`;
+chomp $BRANCH;
+my $HOSTNAME = `hostname -s`;
+chomp $HOSTNAME;
+
+if ( $RUNNING ) {
+    # we only care about stuff after "lib/header.js " i.e. the args passed in to "runsel"
+    $RUNNING =~ s/.*lib\/header\.js\s+//;
+
+    # http://selbot-house.herokuapp.com/heartbeat/$HOSTNAME?running=$RUNNING\&branch=$BRANCH > /dev/null
+    my $uri = URI->new( "http://selbot-house.herokuapp.com/heartbeat/$HOSTNAME" );
+    $uri->query_form('running' => $RUNNING, 'branch' => $BRANCH);
+    #say $uri;
+    get($uri);
+}
