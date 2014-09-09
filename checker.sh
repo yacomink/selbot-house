@@ -7,9 +7,8 @@ set -e
 
 REPO_DIR='/buzzfeed/webapp'
 
-# TODO fix inaccurate results
-# XXX only shows the last test in the list passed to runsel
-RUNNING=$(ps -a -o args| grep selenium2 | grep -v grep | head -1 | awk '{ print $NF }')
+# save everything after 'lib/header.js ' i.e. the args passed in to "runsel"
+RUNNING=$(ps -a -o args| grep selenium2 | grep -v grep | head -1 | sed 's/.*lib\/header\.js \(.*\)/\1/')
 BRANCH=$(cd $REPO_DIR && git symbolic-ref --short HEAD)
 HOSTNAME=$(hostname -s)
 
