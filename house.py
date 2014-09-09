@@ -5,7 +5,7 @@ from flask import request
 from flask import render_template
 import time
 from datetime import date
-import natural
+import natural.date
 
 import redis
 app = Flask(__name__)
@@ -20,12 +20,13 @@ def hello():
 	for key in redis.keys():
 		if ('host:Dev' in key and redis.get(key)):
 			s = json.loads(redis.get(key))
-			now = time.time()
-			mins = (int(now) - s['time']) / 60;
+			# time in seconds since epoch as int
+			now = int(time.time())
+			mins = (now - s['time']) / 60;
 			rel = natural.date.delta(now, s['time'], words=False)
 			s['server'] = key
 			s['minutes_ago'] = mins
-			s['time_ago_relative'] = rel
+			s['time_ago_relative'] = rel[0]
 			selbots.append(s)
 
 	return render_template('house.html', servers=selbots)
@@ -34,6 +35,7 @@ def hello():
 def heartbeat( hostname ):
 	running = request.args.get('running')
 	branch = request.args.get('branch')
+	# 'time': time in seconds since epoch as int
 	redis.set('host:' + hostname, json.dumps({ 'running': running, 'branch': branch, 'time':  int(time.time()) }))
 	return "Heartbeat!"
 
