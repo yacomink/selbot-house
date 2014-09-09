@@ -22,7 +22,7 @@ def hello():
 			s['server'] = key
 			s['minutes_ago'] = (int(time.time()) - s['time']) / 60;
 			selbots.append(s)
-	
+
 	return render_template('house.html', servers=selbots)
 
 @app.route("/heartbeat/<hostname>", methods=['GET'])
@@ -35,7 +35,3 @@ def heartbeat( hostname ):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
-
-
-
-
