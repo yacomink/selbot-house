@@ -30,13 +30,13 @@
 		<div class="col-md-4 column">
 			<h2>
 				{{ server.server }}
-				<span class="label label-default">{{ server.branch }}</span>
 				{% if server.minutes_ago > 15 %}
 				<span class="label label-danger">Probably free!</span>
 				{% else %}
 				<span class="label label-success">In use.</span>
 				{% endif %}
 			</h2>
+			<h4><code>{{ server.branch }}</code></h4>	
 			<p>Running <code>{{ server.running }}</code> as of {{ server.minutes_ago }} minutes ago.</p>
 		</div>
 		{% endfor %}

@@ -17,7 +17,7 @@ redis = redis.from_url(redis_url)
 def hello():
 	selbots = [];
 	for key in redis.keys():
-		if ('host:' in key and redis.get(key)):
+		if ('host:Dev' in key and redis.get(key)):
 			s = json.loads(redis.get(key))
 			s['server'] = key
 			s['minutes_ago'] = (int(time.time()) - s['time']) / 60;
