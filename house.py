@@ -5,6 +5,7 @@ from flask import request
 from flask import render_template
 import time
 from datetime import date
+import natural
 
 import redis
 app = Flask(__name__)
@@ -19,8 +20,12 @@ def hello():
 	for key in redis.keys():
 		if ('host:Dev' in key and redis.get(key)):
 			s = json.loads(redis.get(key))
+			now = time.time()
+			mins = (int(now) - s['time']) / 60;
+			rel = natural.date.delta(now, s['time'], words=False)
 			s['server'] = key
-			s['minutes_ago'] = (int(time.time()) - s['time']) / 60;
+			s['minutes_ago'] = mins
+			s['time_ago_relative'] = rel
 			selbots.append(s)
 
 	return render_template('house.html', servers=selbots)

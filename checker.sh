@@ -9,7 +9,7 @@ REPO_DIR='/buzzfeed/webapp'
 
 # TODO fix inaccurate results
 # XXX only shows the last test in the list passed to runsel
-RUNNING=$(ps a | grep selenium2 | fgrep -v grep | head -1 | awk '{ print $NF }')
+RUNNING=$(ps -a -o args| grep selenium2 | grep -v grep | head -1 | awk '{ print $NF }')
 BRANCH=$(cd $REPO_DIR && git symbolic-ref --short HEAD)
 HOSTNAME=$(hostname -s)
 
