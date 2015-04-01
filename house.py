@@ -17,7 +17,7 @@ redis = redis.from_url(redis_url)
 @app.route("/")
 def hello():
 	selbots = [];
-	for key in sorted(["host:DevSystem1.local","host:DevSystem2.local","host:DevSystem3.local"]):
+	for key in sorted(["host:DevSystem0.local","host:DevSystem1.local","host:DevSystem2.local","host:DevSystem3.local"]):
 		if (redis.get(key)):
 			s = json.loads(redis.get(key))
 			# time in seconds since epoch as int
